@@ -105,5 +105,45 @@ public class Game {
         return players;
     }
 
-   
+    public void startGame() {
+        Scanner sc = new Scanner(System.in);
+        String restart = "";
+        this.cells = createBoard();
+        int counter = 0;
+        boolean finish = false;
+
+        for (Player player: players) {
+            player.getCellsSelected().clear();
+        }
+
+        while (!finish) {
+            for (Player current : this.getPlayers()) {
+                System.out.println("Turno para " + current.getName());
+                current.makePlay(this);
+                if (this.checkFinish(current)) {
+                    finish = true;
+                    System.out.println("Quieres jugar otra vez? (s/n)");
+                    restart = sc.nextLine();
+                    break;
+                }
+                counter++;
+                if (counter == 9) {
+                    finish = true;
+                    System.out.println("Empate");
+                    System.out.println("Quieres jugar otra vez?(s/n)");
+                    restart = sc.nextLine();
+                    break;
+                }
+            }
+        }
+
+        if (restart.equalsIgnoreCase("s")) startGame();
+        else {
+            Player player1 = players.get(0);
+            Player player2 = players.get(1);
+
+            System.out.println(player1.getName()+" Tiene "+player1.getVictories()+" victorias\n"+player2.getName()+" Te "+player2.getVictories() + " victorias");
+
+        }
+    }
 }
