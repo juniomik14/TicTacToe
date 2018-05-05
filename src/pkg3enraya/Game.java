@@ -17,5 +17,11 @@ import java.util.Scanner;
  * @author usuario
  */
 public class Game {
+    private Cell[][] cells;
+    private ArrayList<Player> players;
+
    
+    
+
+    
 }

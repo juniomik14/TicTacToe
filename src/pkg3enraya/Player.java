@@ -42,7 +42,39 @@ public class Player {
         return selection;
     }
     
-    
+    public void makePlay(Game game) {
+        Scanner sc = new Scanner(System.in);
+
+        Cell[][] cells = game.getCells();
+        Integer posX = 0;
+        int posY = 0;
+        
+        boolean posOcupadas=false;
+        while(posOcupadas==false){
+  
+        try{
+             System.out.println("Inserta posicion vretical (" + this.name + ')');
+             posX=getPosicion();
+            
+             System.out.println("Inserta posicion horizontal (" + this.name + ')');
+            posY=getPosicion();
+        }catch(IllegalArgumentException e){
+            
+        }
+       
+        if (cells[posY][posX].isInUse()) {
+            System.out.println("Esta ocupada");
+            
+        } else {
+            posOcupadas=true;
+            cells[posY][posX].setInUse(this.getSelection());
+            cellsSelected.add(cells[posY][posX]);
+            game.showBoard();
+        }
+        }
+        
+    }
+
     public int getCellsQty() {
         return cellsSelected.size();
     }
