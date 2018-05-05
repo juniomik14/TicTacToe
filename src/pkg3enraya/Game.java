@@ -74,5 +74,36 @@ public class Game {
         return players;
     }
 
-    
+    public boolean checkFinish(Player player) {
+        boolean finish = false;
+        ArrayList<Integer> cellIdList = new ArrayList<>();
+
+        if (player.getCellsQty() >= 3) {
+            for (Cell cell : player.getCellsSelected()) {
+                cellIdList.add(cell.getId());
+            }
+            if ((cellIdList.contains(1) && cellIdList.contains(2) && cellIdList.contains(3)) || (cellIdList.contains(4) && cellIdList.contains(5) && cellIdList.contains(6)) || (cellIdList.contains(7) && cellIdList.contains(8) && cellIdList.contains(9))) {
+                finish = true;
+                player.addVictory();
+                System.out.println("Felicidades " + player.getName() + " has ganado!!!");
+            } else if ((cellIdList.contains(1) && cellIdList.contains(4) && cellIdList.contains(7)) || (cellIdList.contains(2) && cellIdList.contains(5) && cellIdList.contains(8)) || (cellIdList.contains(3) && cellIdList.contains(6) && cellIdList.contains(9))) {
+                finish = true;
+                player.addVictory();
+                System.out.println("Felicidades " + player.getName() + " has ganado!!");
+            } else if ((cellIdList.contains(1) && cellIdList.contains(5) && cellIdList.contains(9)) || (cellIdList.contains(3) && cellIdList.contains(5) && cellIdList.contains(7))) {
+                finish = true;
+                player.addVictory();
+                System.out.println("Felicidades " + player.getName() + " has ganado!!!");
+            }
+
+        }
+
+        return finish;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+   
 }
